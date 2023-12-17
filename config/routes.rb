@@ -55,13 +55,15 @@ Rails.application.routes.draw do
     get 'car_items/destroy_all'
     get 'car_items/create'
   end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/upadte'
-    get 'customers/check'
-    get 'customers/withdraw'
+  
+  scope module: :public do
+   get "customers/mypage" => "customers#show"
+   get "customers/information/edit" => "customers#edit"
+   patch "customers/information" => "customers#update"
+   get "customers/check" => "customers#check"
+   patch "customers/withdraw" => "customers#withdraw"
   end
+  
   namespace :public do
     get 'items/index'
     get 'items/show'
