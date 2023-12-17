@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  
+
   def withdraw
     @customer = Customer.find(current_customer.id)
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
@@ -36,4 +36,5 @@ class Public::CustomersController < ApplicationController
                                      :email
                                      )
   end
+  
 end
