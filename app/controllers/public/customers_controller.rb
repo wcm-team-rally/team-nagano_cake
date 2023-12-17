@@ -9,9 +9,9 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
   
-　def show
+  def show
     @customer = current_customer
-  　end
+  end
   
   def edit
     @customer = current_customer
