@@ -1,13 +1,20 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
-    # @item_pages = Item_page.all.page(params[:page]).per(10)
+    @item_pages = Item_page.all.page(params[:page]).per(10)
+  end
+  
+  def new
+    @item = Item.new
   end
 
   def create
-  end
-
-  def new
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to admin_item_path(@item.id)
+    else
+      render :new
+    end
   end
 
   def show
@@ -20,9 +27,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
   end
+  
+  private
 
-  # def item_params
-  #   params.require(:item).permit(:id, :name, :price, :genre_id, :is_active) #( :body )をpermit内へ追加
-  # end
+  def item_params
+    params.require(:item).permit(:id, :name, :introduction, :price, :genre_id, :is_active, :image) #( :body )をpermit内へ追加
+  end
 
 end
