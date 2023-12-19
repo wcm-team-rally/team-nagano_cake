@@ -21,8 +21,6 @@ class Admin::ItemsController < ApplicationController
   def update
   end
 
-  # def item_params
-  #   params.require(:item).permit(:id, :name, :price, :genre_id, :is_active) #( :body )をpermit内へ追加
-  # end
+
 
 end
