@@ -29,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   end
   
   private
-
+  
   def item_params
     params.require(:item).permit(:id, :name, :introduction, :price, :genre_id, :is_active, :image) #( :body )をpermit内へ追加
   end
