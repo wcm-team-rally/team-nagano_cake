@@ -26,22 +26,22 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
   private
-  # アクティブであるかを判断するメソッド
-  def customer_state
-  # 【処理内容1】 入力されたemailからアカウントを1件取得
-  customer = Customer.find_by(email: params[:customer][:email])
-  # 【処理内容2】 アカウントを取得できなかった場合、このメソッドを終了する
-  return if customer.nil?
-  # 【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
-  return unless customer.valid_password?(params[:customer][:password])
-
-  # 【処理内容4】 アクティブでない会員に対する処理
-  end
-  if customer
-    # 処理内容3
-    # unlessではないことに注意, ここではパスワードが正しい場合に後続の処理を実行したいため
-    if customer.valid_password?(params[:customer][:password])
-      #処理内容４
+  
+ def customer_state
+    customer = Customer.find_by(email: params[:customer][:email])#customerモデルの保存データの中から、フォームに入力されたemailに紐づく情報を取得する
+    return if customer.nil?#取得してきたcustomerのデータが存在するか、ないならメソッド終了
+    return unless customer.valid_password?(params[:customer][:password])#取得したアカウントのパスワードと入力されたパスワードが不一致の場合、このメソッドを終了
+    unless customer.is_active == true#会員ステータスがtrueでないなら新規登録画面に戻る
+      flash[:alert] = "すでに退会しています。"
+      redirect_to new_customer_registration_path
     end
-  end
+    
+ end
+ 
+ 
+  protected
+ 
+    def configure_sign_in_params
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+    end
 end
