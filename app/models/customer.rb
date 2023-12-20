@@ -17,7 +17,6 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :telephone_number, presence: true
-  validates :is_active, presence: true
 
   def full_name
     last_name + '' + first_name
@@ -27,4 +26,11 @@ class Customer < ApplicationRecord
     last_name_kana + '' + first_name_kana
   end
 
+  def customer_status
+    if is_active == true
+      "有効"
+    else
+      "退会"
+    end
+  end
 end
