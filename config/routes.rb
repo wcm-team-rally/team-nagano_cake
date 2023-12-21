@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
+    delete "car_items/destroy_all" => "car_items#destroy_all"
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :create, :index, :show]
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
     get "about" => "homes#about", as: "about"
     post 'orders/confirm' => "orders#confirm"
     get 'orders/thanks' => "orders#thanks"
-    delete "car_items/destroy_all" => "car_items#destroy_all"
     get "customers/mypage" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
