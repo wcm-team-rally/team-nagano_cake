@@ -1,8 +1,7 @@
-<%= render 'layouts/customer_header' %>
 
 <h4>ショッピングカート</h4>
 
-<%= button_to 'カートを空にする', @car_item, method: :delete_all, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
+<%= link_to "カートを空にする", car_items_destroy_all_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class:"btn btn-danger mr-5 ml-auto" %>
 
   <table border="1" width="600">  
     <tr>
@@ -17,7 +16,7 @@
         <tr>
           <td><%= car_item.item.name %></td>
           <td><%= car_item.item.with_tax_price %></td>
-          <td><%= car_item.quantity %></td>
+          <td><%= car_item.amount %></td>
           <td><%= car_item.subtotal %></td>
           <td>
             <%= link_to car_items_path, method: :delete do %>
