@@ -11,12 +11,12 @@ class Public::CarItemsController < ApplicationController
   def create
     if current_customer.car_items.find_by(item_id: params[:car_item][:item_id]).present?
       @car_item = current_customer.car_items.find_by(item_id: params[:car_item][:item_id])
-      @cart_item.quantity += params[:cart_item][:quantity].to_i
+      @car_item.quantity += params[:car_item][:quantity].to_i
       @car_item.save
         flash[:notice] = 'カートに商品が入りました。'
         redirect_to car_items_path
     else
-      @car_item = CarItem.new(cart_item_params)
+      @car_item = CarItem.new(car_item_params)
       @car_item.customer_id=current_customer.id
       if @car_item.save
           flash[:notice] = 'カートに商品が入りました。'
