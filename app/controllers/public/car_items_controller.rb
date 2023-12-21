@@ -17,13 +17,14 @@ class Public::CarItemsController < ApplicationController
         redirect_to car_items_path
     else
       @car_item = CarItem.new(car_item_params)
+      @car_item.amount = params[:car_item][:amount].to_i
       @car_item.customer_id=current_customer.id
       if @car_item.save
           flash[:notice] = 'カートに商品が入りました。'
           redirect_to car_items_path
       else
         flash[:alert] = '商品の追加に失敗しました。'
-          redirect_to item_path
+          redirect_to items_path
       end
     end
   end
@@ -42,9 +43,9 @@ class Public::CarItemsController < ApplicationController
   end
 
   def destroy_all
-    @car_items = CarItems.all
+    #@car_items = CarItem.all
     current_customer.car_items.destroy_all
-  　render 'index'
+    render 'index'
   end
 
   private
