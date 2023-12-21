@@ -43,7 +43,7 @@ class Public::CarItemsController < ApplicationController
   end
 
   def destroy_all
-    #@car_items = CarItem.all
+    @car_items = CarItem.all
     current_customer.car_items.destroy_all
     render 'index'
   end
