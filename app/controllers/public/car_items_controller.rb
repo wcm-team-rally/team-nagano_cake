@@ -39,7 +39,7 @@ class Public::CarItemsController < ApplicationController
     @car_item = CarItem.find(params[:id])
     @car_item.destroy
     @car_items = CarItem.all
-  　render 'index'
+    render 'index'
   end
 
   def destroy_all
@@ -51,6 +51,6 @@ class Public::CarItemsController < ApplicationController
   private
 
   def car_item_params
-    params.require(:car_item).permit(:item_id, :quantity, :customer_id)
+    params.require(:car_item).permit(:item_id, :amount, :customer_id)
   end
 end
