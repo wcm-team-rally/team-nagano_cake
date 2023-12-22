@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      
+
       <table>
         <tr>
           <td>商品名</td>
@@ -16,7 +16,7 @@
 
           <tr>
             <td>
-              <%= attachment_image_tag car_item.item, :image, :fill, 300, 300, format: 'jpeg' %>
+              <%= image_tag car_item.item.get_image(300,300) %>
               <%= car_item.item.name %>
             </td>
             <td><%= car_item.item.with_tax_price %></td>
@@ -41,7 +41,7 @@
            <td><%= @sum + 800 %></td>
         </tr>
       </table>
-      
+
       <table>
         <tr>
           <th>支払い方法</th>
@@ -56,8 +56,8 @@
           </td>
         </tr>
       </table>
-
-      <%= form_with model: @order_new , url: "/orders" , local:true do |f| %>
+      
+      <%= form_with model: @order_new , url: orders_path, local:true do |f| %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.hidden_field :payment_method, value: @order.payment_method %>
         <%= f.hidden_field :shipping_cost, value: 800 %>
@@ -69,7 +69,7 @@
         <%= f.submit "注文を確定する" %>
       <% end %>
 
-      
+
     </div>
   </div>
 </div>

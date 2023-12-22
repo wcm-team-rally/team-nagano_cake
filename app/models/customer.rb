@@ -33,4 +33,8 @@ class Customer < ApplicationRecord
       "退会"
     end
   end
+  
+  def customer_address_display
+    '〒' + postal_code + ' ' + address + ' ' + full_name
+  end
 end
