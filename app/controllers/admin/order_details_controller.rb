@@ -10,7 +10,7 @@ class Admin::OrderDetailsController < ApplicationController
          @order.update(status: "manufacturing") if @order_details.making_status == "manufacturing"
          @order_details.each do |order_details|
            if order_details.making_status != "finish"
-             is_update = false
+              is_update = false
            end
          end
          @order.update(status: "preparing_ship")
