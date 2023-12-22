@@ -51,6 +51,6 @@ class Public::CarItemsController < ApplicationController
   private
 
   def car_item_params
-    params.require(:car_item).permit(:item_id, :quantity, :customer_id)
+    params.require(:car_item).permit(:item_id, :amount, :customer_id)
   end
 end
