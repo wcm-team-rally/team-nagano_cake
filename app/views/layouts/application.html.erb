@@ -11,10 +11,10 @@
   </head>
 
   <body>
-    <header>
+    <header class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="/"><span>NAGANO CAKE</span></a>
+          <a class="navbar-brand" href="/"><span>Nagano Cake</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,19 +22,30 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
+                <li class="nav-item text-light my-3 mr-5">
+                  <%= "ようこそ、#{current_customer.last_name}さん！" %>
+                </li>
                 <li>
                   <%= link_to 'マイページ', customers_mypage_path, class: 'nav-link text-light' %>
                 </li>
                 <li>
                   <%= link_to '商品一覧', items_path, class: 'nav-link text-light' %>
                 </li>
-                
+                <li>
+                  <%= link_to 'カート', car_items_path, class: 'nav-link text-light' %>
+                </li>
                 <li>
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light' %>
                 </li>
               <% elsif admin_signed_in? %>
                 <li>
                   <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light' %>
+                </li>
+                <li>
+                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light' %>
+                </li>
+                <li>
+                  <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-light' %>
                 </li>
                 <li>
                   <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
@@ -65,7 +76,7 @@
     <%= yield %>
     </main>
     <footer>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+      <nav class="fixed-bottom navbar navbar-expand-lg navbar-dark bg-dark"></nav>
     </footer>
   </body>
 </html>
