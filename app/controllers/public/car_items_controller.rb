@@ -30,14 +30,14 @@ class Public::CarItemsController < ApplicationController
   end
 
   def update
-    @car_item = CarItem.find_by(item_id: params[:car_item][:item_id])
+    @car_item = CarItem.find(params[:id])
 		@car_item.update(car_item_params)
-		redirect_to public_car_items_path
+		redirect_to car_items_path
   end
 
   def destroy
     @car_item = CarItem.find(params[:id])
-    car_item.destroy
+    @car_item.destroy
     @car_items = CarItem.all
   　render 'index'
   end
