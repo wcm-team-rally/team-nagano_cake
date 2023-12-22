@@ -16,7 +16,12 @@
         <tr>
           <td><%= car_item.item.name %></td>
           <td><%= car_item.item.with_tax_price %></td>
-          <td><%= car_item.amount %></td>
+          <td><%= form_with model: car_item, method: :patch do |f| %>
+              <%= f.hidden_field :item_id, value: car_item.item.id %>
+              <%= f.select :amount, (1..5) %>
+              <%= f.submit '変更', class: "btn btn-success" %>
+              <% end %>
+          </td>
           <td><%= car_item.subtotal %></td>
           <td>
             <%= link_to car_items_path, method: :delete do %>
