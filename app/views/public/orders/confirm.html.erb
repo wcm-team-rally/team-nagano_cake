@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <label class="h4 bg-light">注文情報確認</label>
+  <div class="row mb-2">
+    <div class="col-lg-8">
 
-      <table>
+      <table class="table table-bordered">
         <tr>
           <td>商品名</td>
           <td>単価</td>
@@ -27,7 +28,7 @@
         <% end %>
       </table>
 
-      <table>
+      <table class="table table-bordered">
         <tr>
           <td>送料</td>
           <td>800</td>
@@ -42,7 +43,7 @@
         </tr>
       </table>
 
-      <table>
+      <table class="table table-borderless">
         <tr>
           <th>支払い方法</th>
           <td><%= @order.payment_method_i18n%></td>
@@ -66,7 +67,7 @@
         <%= f.hidden_field :address, value: @order.address%>
         <%= f.hidden_field :name, value: @order.name %>
         <%= f.hidden_field :status, value: "wait_payment"%>
-        <%= f.submit "注文を確定する" %>
+        <%= f.submit "注文を確定する", class: "btn btn-primary" %>
       <% end %>
 
 
