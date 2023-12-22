@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   before_action :caritem_nill, only: [:new, :create]
-  
+
   def new
     @order = Order.new
     @addresses = current_customer.addresses
@@ -21,35 +21,32 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:select_address] == "2"
       @order.customer_id = current_customer.id
     end
-      @car_items = current_custemer.car_items
+      @car_items = current_customer.car_items
       @order_new = Order.new
       render :confirm
-  end
-
-  def thanks
   end
 
   def create
     order = Order.new(order_params)
     order.save
     @car_items = current_customer.car_items.all
-    
+
     @car_items.each do |car_item|
       @order_details = OrderDetail.new
       @order_details.order_id = order.id
       @order_details.item_id = car_item.item.id
       @order_details.price = car_item.item.price
-      @order_details.amount = cart_item.amount
+      @order_details.amount = car_item.amount
       @order_details.making_status = 0
-      @order_details.save!
-     end
-    
+      @order_details.save
+    end
+
     CarItem.destroy_all
     redirect_to orders_thanks_path
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc).
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
@@ -57,12 +54,15 @@ class Public::OrdersController < ApplicationController
     @order_details= OrderDetail.where(order_id: @order.id)
   end
   
+  def thanks
+  end
+
   private
 
   def order_params
     params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :customer_id , :status)
   end
-  
+
   def caritem_nill
     car_items = current_customer.car_items
     if car_items.blank?

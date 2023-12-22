@@ -9,16 +9,16 @@ class Item < ApplicationRecord
   validates :genre_id, presence: true
   validates :is_active, presence: true
 
-  def get_image
+  def get_image(width, height)
     if image.attached?
-      image
+      image.variant(resize_to_limit: [width, height]).processed
     end
   end
-  
+
   def with_tax_price
     (price * 1.1).floor
   end
-  
+
   def subtotal
     item.with_tax_price * amount
   end
