@@ -1,11 +1,10 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      
-    <h3>注文履歴詳細</h3>
+  <label class="h4 bg-light mb-5">注文履歴詳細</label>
+  <div class="row mb-2">
+    <div class="col-lg-10">
 
     <h4>注文情報</h4>
-    <table class="table">
+    <table class="table table-bordered">
       <tr>
         <td>注文日</td>
         <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -25,7 +24,7 @@
     </table>
 
     <h4>請求情報</h4>
-    <table class="table">
+    <table class="table table-bordered">
       <tr>
         <td>商品合計</td>
         <td><%= @order.total_payment - @order.shipping_cost %></td>
@@ -41,7 +40,7 @@
     </table>
 
     <h4>ご注文内容</h4>
-    <table class="table">
+    <table class="tabletable-bordered">
       <tr>
         <td>商品</td>
         <td>単価(税込)</td>
@@ -51,13 +50,13 @@
       <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.price %></td>
+          <td><%= order_detail.item.with_tax_price %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= order_detail.amount * order_detail.price %></td>
+          <td><%= order_detail.amount * order_detail.item.with_tax_price %></td>
         </tr>
       <% end %>
     </table>
-      
+
     </div>
   </div>
 </div>

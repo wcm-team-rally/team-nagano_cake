@@ -1,5 +1,7 @@
-
-<h4>ショッピングカート</h4>
+<div class="container">
+<div class="row mb-2">
+<div class="col-lg-10">
+<label class="h4 bg-light">ショッピングカート</label>
 
 <%= link_to "カートを空にする", car_items_destroy_all_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class:"btn btn-danger mr-5 ml-auto" %>
 
@@ -50,3 +52,7 @@
 <%= form_with url: new_order_path, method: :get, local: true do |form| %>
  <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
 <% end %>
+
+</div>
+</div>
+</div>
