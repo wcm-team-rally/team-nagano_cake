@@ -4,7 +4,6 @@ class Admin::OrderDetailsController < ApplicationController
     @order = @order_detail.order
     @order_details = @order.order_details.all
     # @order_details.update(order_details_params)
-
     is_updated = true
       if @order_details.update(order_detail_params)
          @order.update(status: "manufacturing") if @order_details.making_status == "manufacturing"
