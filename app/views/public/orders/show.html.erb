@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <td>配送先</td>
-        <td>〒<%= @order.postal_code + "　" + @order.address + "　" + @order.name %></td>
+        <td>〒<%= @order.postal_code + "　" + @order.address + "　" + @order.customer.last_name + ' ' + @order.customer.first_name %></td>
       </tr>
       <tr>
         <td>支払方法</td>

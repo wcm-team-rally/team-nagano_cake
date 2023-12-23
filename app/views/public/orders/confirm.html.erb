@@ -14,7 +14,6 @@
         <% @sum = 0 %>
 
         <% @car_items.each do |car_item| %>
-
           <tr>
             <td>
               <%= image_tag car_item.item.get_image(300,300) %>
@@ -23,7 +22,7 @@
             <td><%= car_item.item.with_tax_price %></td>
             <td><%= car_item.amount %></td>
             <% @sum += car_item.subtotal %>
-            <td><%= @sum %></td>
+            <td><%= car_item.subtotal %></td>
           </tr>
         <% end %>
       </table>
@@ -57,7 +56,7 @@
           </td>
         </tr>
       </table>
-      
+
       <%= form_with model: @order_new , url: orders_path, local:true do |f| %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.hidden_field :payment_method, value: @order.payment_method %>

@@ -24,6 +24,7 @@ class Public::OrdersController < ApplicationController
       @car_items = current_customer.car_items
       @order_new = Order.new
       render :confirm
+      # @total = @order.inject(0) { |sum, order.car_item| sum + car_item.subtotal }
   end
 
   def create
