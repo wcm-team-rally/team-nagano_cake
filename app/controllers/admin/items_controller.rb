@@ -36,7 +36,7 @@ class Admin::ItemsController < ApplicationController
     # redirect_to edit_admin_item_path(@item.id)
     if @item.update(item_params)
       #@item.is_active = params[:item][:is_active]
-      redirect_to edit_admin_item_path(@item.id)
+      redirect_to admin_items_path(@item.id)
     else
       redirect_to edit_admin_item_path(@item.id)
     end
