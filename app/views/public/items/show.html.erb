@@ -1,16 +1,14 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10">
+<div class="row">
+<div class="col-lg-2"></div>
+<div class="col-lg-10">
       <div>
         <%= image_tag @item.get_image(300,300) %>
         <%= @item.name %>
         <%= @item.introduction %>
         <p>¥<%= @item.price %>（税抜）</p>
       </div>
-    </div>
-  </div>
-</div>
 
 <%= form_with model: @car_item, url: car_items_path, method: :post, local:true do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
@@ -18,3 +16,7 @@
   <%= f.select :amount, *[1..99],{include_blank: '個数選択'},required:true%>&emsp;
   <%= f.submit "カートに入れる" %>
 <% end %>
+
+</div>
+</div>
+</div>
