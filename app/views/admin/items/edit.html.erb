@@ -58,8 +58,8 @@
       <%= f.label :販売ステータス %> <!--ラジオボックスで作成-->
     </div>
     <div class="col-lg-7">
-      <%= f.radio_button :is_active, "true" %>販売中
-      <%= f.radio_button :is_active, "false" %>販売停止中
+      <%= f.radio_button :is_active, true %>販売中
+      <%= f.radio_button :is_active, false %>販売停止中
     </div>
   </div>
     <div class="row mb-2">
