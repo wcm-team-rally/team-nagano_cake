@@ -1,6 +1,6 @@
 class Public::CarItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
     @car_items = CarItem.all
     @item = Item.all
