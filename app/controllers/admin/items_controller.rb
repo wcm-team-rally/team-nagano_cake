@@ -27,18 +27,26 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
+     @item = Item.find(params[:id])
+    # @item.is_active = params[:item][:is_active]
+    # @item.name = params[:item][:name]
+    # @item.price = params[:item][:price]
+    # @item.introduction = params[:item][:introduction]
+    # @item.genre_id = params[:item][:genre_id]
+    # redirect_to edit_admin_item_path(@item.id)
     if @item.update(item_params)
-      redirect_to admin_item_path(@item.id)
+      #@item.is_active = params[:item][:is_active]
+      redirect_to edit_admin_item_path(@item.id)
     else
-      redirect_to edit_admin_item_path(item.id)
+      redirect_to edit_admin_item_path(@item.id)
     end
+    
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:id, :name, :introduction, :price, :genre_id, :is_active, :image) #( :body )をpermit内へ追加
+    params.require(:item).permit(:name, :introduction, :price, :genre_id, :is_active, :image) #( :body )をpermit内へ追加
   end
 
 end
