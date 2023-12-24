@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+      <label class="h4 bg-light px-4">会員一覧</label>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <table class="table table shadow-sm">
+        <thead class="bg-light">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @customers.each do |f| %>
+          <tr>
+            <td><%= f.id %></td>
+            <td><%= link_to f.full_name, admin_customer_path(f) %></td>
+            <td><%= f.email %></td>
+            <td><%= f.customer_status %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= paginate @customer_pages %>
+  </div>
+</div>
+

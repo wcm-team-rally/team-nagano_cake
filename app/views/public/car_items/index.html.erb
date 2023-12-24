@@ -1,0 +1,56 @@
+<div class="container">
+<div class="row mb-2">
+<div class="col-lg-10">
+<label class="h4 bg-light">ショッピングカート</label>
+
+<%= link_to "カートを空にする", car_items_destroy_all_path, method: :delete, "data-confirm" => "カートを空にします。よろしいでしょうか？", class:"btn btn-danger mr-5 ml-auto" %>
+
+  <table border="1" width="600">
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+　　<tbody>
+      <% @car_items.each do |car_item| %>
+        <tr>
+          <td><%= car_item.item.name %></td>
+          <td><%= car_item.item.with_tax_price %></td>
+          <td><%= form_with model: car_item, url: car_item_path(car_item.id) do |f| %>
+              <%= f.hidden_field :item_id, value: car_item.item.id %>
+              <%= f.select :amount, (1..99) %>
+              <%= f.submit '変更', class: "btn btn-success" %>
+              <% end %>
+          </td>
+          <td><%= car_item.subtotal %></td>
+          <td>
+            <%= link_to "削除する", car_item_path(car_item.id), method: :delete, class:"btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <table border="1">
+      <tr>
+        <td>合計金額</th>
+        <td><%= @total %></td>
+      </tr>
+    </table>
+  </div>
+
+
+<%= form_with url: root_path, method: :get, local: true do |form| %>
+ <%= form.submit '買い物を続ける', class: "btn btn-sm btn-success" %>
+<% end %>
+
+<%= form_with url: new_order_path, method: :get, local: true do |form| %>
+ <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
+<% end %>
+
+</div>
+</div>
+</div>
